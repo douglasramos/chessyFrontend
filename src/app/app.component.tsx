@@ -1,12 +1,15 @@
 import './app.styles.css';
 
-import { Button } from '@material-ui/core';
 import React from 'react';
+
+import { Header } from '../header/header.component';
+import { Home } from '../home/home.component';
 
 export const App = (): JSX.Element => {
   return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
+    <>
+      <Header />
+      <Home />
+    </>
   );
 };
