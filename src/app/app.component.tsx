@@ -3,13 +3,13 @@ import './app.styles.css';
 import React from 'react';
 
 import { Header } from '../header/header.component';
-import { Home } from '../home/home.component';
+import { ProjectPage } from '../project-page/project-page.component';
 
 export const App = (): JSX.Element => {
   return (
-    <>
+    <div className="app">
       <Header />
-      <Home />
-    </>
+      <ProjectPage />
+    </div>
   );
 };
