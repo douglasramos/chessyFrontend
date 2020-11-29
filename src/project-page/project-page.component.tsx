@@ -2,6 +2,7 @@ import { Container, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 
+import { AuthorCard } from '../author-card/author-card.component';
 import { CardWithLink } from '../card-with-link/card-with-link.component';
 import { MainSection } from './sections/main-section.component';
 
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   gridItemUnsetFlexBasis: {
     flexBasis: 'unset',
   },
-  links: {
+  margin: {
     marginTop: '1em',
     marginLeft: '1em',
   },
@@ -93,6 +94,37 @@ export const ProjectPage = (): JSX.Element => {
     },
   ];
 
+  const authors = [
+    {
+      image: 'douglas-ramos',
+      href: 'https://www.linkedin.com/in/dcramos/',
+      name: 'Douglas Ramos',
+      description:
+        'Engenheiro de Software na Loft e estudante de Engenharia na Escola Politécnica da Universidade de São Paulo',
+    },
+    {
+      image: 'pedro-brito',
+      href: 'https://google.com',
+      name: 'Pedro Bitro',
+      description:
+        'Estudante de Engenharia de Computação na Escola Politécnica da Universidade de São Paulo',
+    },
+    {
+      image: 'rafael-seiji',
+      href: 'https://www.linkedin.com/in/rafael-higa-808a59196/',
+      name: 'Rafael Seiji',
+      description:
+        'Cientista de dados na BigData e estudante de Engenharia na Escola Politécnica da Universidade de São Paulo',
+    },
+    {
+      image: '',
+      href: 'https://www.linkedin.com/in/glauber-de-bona-224a991a1/',
+      name: 'Glauber de Bona',
+      description:
+        'Professor Doutor no departamento de Engenheira de Computação e sistemas digitais da POLI-USP',
+    },
+  ];
+
   return (
     <div className={classes.root}>
       <MainSection />
@@ -103,10 +135,10 @@ export const ProjectPage = (): JSX.Element => {
           </Typography>
           <p className={classes.sectionContent}>
             A chessy é resultado do projeto de conclusão de curso dos alunos Douglas Ramos, Pedro
-            Brito e Rafael Seiji, com orientação do professor Glauber Rocha, pelo Escola Politécnica
-            da univesidade de São Paulo, 2020. O trabalho versa sobre o estudo do uso de modelos de
-            processamento de linguagem natural em partidas de xadrez, a fim de detectar pontos de
-            viradas (ou melhores momentos) de uma partida.
+            Brito e Rafael Seiji, com orientação do professor Glauber de Bona, pelo Escola
+            Politécnica da univesidade de São Paulo, 2020. O trabalho versa sobre o estudo do uso de
+            modelos de processamento de linguagem natural em partidas de xadrez, a fim de detectar
+            pontos de viradas (ou melhores momentos) de uma partida.
           </p>
         </Container>
       </section>
@@ -116,7 +148,7 @@ export const ProjectPage = (): JSX.Element => {
           <Typography variant="h3" className={classes.sectionTitle}>
             Links Úteis
           </Typography>
-          <Grid container justify="space-between" className={classes.links}>
+          <Grid container justify="space-between" className={classes.margin}>
             {links.map((link) => (
               <Grid key={link.href} item>
                 <CardWithLink title={link.name} image={link.image} href={link.href} />
@@ -171,12 +203,13 @@ export const ProjectPage = (): JSX.Element => {
           <Typography variant="h3" className={classes.sectionTitle}>
             Autores
           </Typography>
-          <ul className={classes.sectionContent}>
-            <li>Douglas Ramos</li>
-            <li>Pedro Brito</li>
-            <li>Rafael Seiji</li>
-            <li>Glauber Rocha</li>
-          </ul>
+          <Grid container justify="space-between" className={classes.margin}>
+            {authors.map((author) => (
+              <Grid key={author.name} item>
+                <AuthorCard {...author} />
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </section>
     </div>

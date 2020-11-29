@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import * as React from 'react';
 
 const useQuoteStyles = makeStyles(
-  (theme) => ({
+  () => ({
     card: {
       display: 'flex',
       flexDirection: 'column',
@@ -22,20 +22,8 @@ const useQuoteStyles = makeStyles(
       width: 48,
       height: 48,
     },
-    twitter: {
-      marginLeft: 'auto',
-      color: theme.palette.primary.light,
-    },
     name: {
       fontSize: 20,
-    },
-    quote: {
-      paddingBottom: '16px !important',
-      paddingTop: 0,
-      '& em': {
-        fontStyle: 'normal',
-        color: theme.palette.primary.main,
-      },
     },
   }),
   { name: 'HomeQuote' },
