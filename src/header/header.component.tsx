@@ -1,22 +1,22 @@
-// import AppBar from '@material-ui/core/AppBar';
-// import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import MenuIcon from '@material-ui/icons/Menu';
 import { Container, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   logo: {
     display: 'flex',
     width: '150px',
-    // height: '82px',
-    // backgroundSize: '100px, 82px',
   },
   navList: {
     display: 'flex',
     listStyleType: 'none',
+    '& a': {
+      textDecoration: 'none',
+      color: '#545454fc',
+      '&:hover': {
+        color: 'black',
+      },
+    },
   },
   firstItem: {
     marginRight: '30px',
@@ -43,18 +43,18 @@ export const Header = (): JSX.Element => {
           </a>
           <ul className={classes.navList}>
             <li className={classes.firstItem}>
-              <a href="/">
+              <Link to="/">
                 <Typography variant="h6">
                   <b>Projeto</b>
                 </Typography>
-              </a>
+              </Link>
             </li>
             <li>
-              <a>
+              <Link to="/application">
                 <Typography variant="h6">
                   <b>Aplicação</b>
                 </Typography>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

@@ -1,11 +1,19 @@
-import { Button, Container, Grid, Typography } from '@material-ui/core';
-import { createMuiTheme, makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
-import Chessboard from 'chessboardjsx';
+import { Container, Grid, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
+
+import { CardWithLink } from '../card-with-link/card-with-link.component';
+import { MainSection } from './sections/main-section.component';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    '& section': {
+      paddingTop: '100px',
+      paddingBottom: '100px',
+      fontSize: '24px',
+      lineHeight: '36px',
+    },
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -16,23 +24,16 @@ const useStyles = makeStyles((theme) => ({
   },
   sectionContent: {
     textAlign: 'center',
-    fontSize: '24px',
-    lineHeight: '36px',
   },
-  sectionLinks: {
+  linkSection: {
     backgroundColor: ' #edebe9',
   },
-  authorsSection: {},
-  main: {
-    alignItems: 'center',
+  authorsSection: {
+    backgroundColor: ' #edebe9',
   },
-  mainContent: {
-    flexBasis: 'unset',
-    textAlign: 'left',
-  },
-  mainSection: {
-    backgroundImage: 'linear-gradient(#fff, #edebe9)',
-    height: '500px',
+
+  technologySection: {
+    // alignItems: 'center',
   },
   ctaButton: {
     width: '250px',
@@ -47,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '32px',
   },
   aboutSection: {
-    height: '450px',
     alignItems: 'center',
     display: 'flex',
   },
@@ -57,53 +57,45 @@ const useStyles = makeStyles((theme) => ({
     right: '-100px',
     width: '200px',
   },
+  techImages: {
+    width: '500px',
+  },
+  leftContent: {
+    textAlign: 'left',
+  },
+  gridItemUnsetFlexBasis: {
+    flexBasis: 'unset',
+  },
+  links: {
+    marginTop: '1em',
+    marginLeft: '1em',
+  },
 }));
+
+interface Links {
+  image: string;
+  name: string;
+  href: string;
+}
 
 export const ProjectPage = (): JSX.Element => {
   const classes = useStyles();
 
-  const buttonTheme = createMuiTheme({
-    palette: {
-      primary: {
-        main: '#b58863',
-        light: '#b58863',
-        dark: '#946f51',
-        contrastText: '#fff',
-      },
+  const links: Links[] = [
+    { image: 'graduation', name: 'Monografia', href: 'https://google.com' },
+    { image: 'play', name: `${'Video Apresentação'}`, href: 'https://google.com' },
+    { image: 'github', name: 'Repo Modelo NLP', href: 'https://github.com/Rseiji/TCC-2020' },
+    { image: 'github', name: 'Repo Backend', href: 'https://github.com/douglasramos/chessyApi' },
+    {
+      image: 'github',
+      name: 'Repo Frontend',
+      href: 'https://github.com/douglasramos/chessyFrontend',
     },
-  });
+  ];
 
   return (
     <div className={classes.root}>
-      <section className={classes.mainSection}>
-        <Container>
-          <Grid container justify="space-between" className={classes.main}>
-            <Grid item md={7} className={classes.mainContent}>
-              <Typography variant="h2">
-                <b>Capture os melhores momentos do seu xadrez</b>
-              </Typography>
-              <p className={classes.paragraph}>
-                A nossa IA analisa os comentários da sua partida e te traz os melhores momentos pra
-                que você consiga estudar os seus lances e melhorar no xadrez
-              </p>
-              <MuiThemeProvider theme={buttonTheme}>
-                <Button
-                  variant="contained"
-                  size="medium"
-                  color="primary"
-                  className={classes.ctaButton}
-                >
-                  Inicie Agora
-                  <img className={classes.imageButton} src="/icons/arrow.svg" alt="arrow" />
-                </Button>
-              </MuiThemeProvider>
-            </Grid>
-            <Grid item md={5} className={classes.mainContent}>
-              <Chessboard position="start" width={450} />
-            </Grid>
-          </Grid>
-        </Container>
-      </section>
+      <MainSection />
       <section className={classes.aboutSection}>
         <Container>
           <Typography variant="h3" className={classes.sectionTitle}>
@@ -119,22 +111,62 @@ export const ProjectPage = (): JSX.Element => {
         </Container>
       </section>
 
-      <section className={`${classes.sectionLinks}`}>
+      <section className={classes.linkSection}>
         <Container>
           <Typography variant="h3" className={classes.sectionTitle}>
             Links Úteis
           </Typography>
-          <ul className={classes.sectionContent}>
-            <li>Monografia</li>
-            <li>Vídeo de Apresentação</li>
-            <li>Repositório Github Modelo NLP + Infraestrutura</li>
-            <li>Repositório Github Backend</li>
-            <li>Repositório Github Frontend</li>
-          </ul>
+          <Grid container justify="space-between" className={classes.links}>
+            {links.map((link) => (
+              <Grid key={link.href} item>
+                <CardWithLink title={link.name} image={link.image} href={link.href} />
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </section>
 
-      <section className={`${classes.authorsSection}`}>
+      <section className={classes.technologySection}>
+        <Container>
+          <Typography variant="h3" className={classes.sectionTitle}>
+            Tecnologias
+          </Typography>
+          <Grid container justify="space-between" alignItems="center">
+            <Grid item md={7} className={classes.leftContent}>
+              <Typography variant="h4">Stockfish</Typography>
+              <p>
+                Stockfish é uma das mais populares engines de xadrez. Ela consegue simular partidas
+                e performar melhor do que os Grande Mestres. Na chessy, ela é utilizada para avaliar
+                a qualidade dos lances em uma partida e assim ajudar o nosso modelo a destacar os
+                lances mais importantes do jogo.
+              </p>
+            </Grid>
+            <Grid item md={5} className={classes.gridItemUnsetFlexBasis}>
+              <img
+                className={classes.techImages}
+                src="/images/stockfish.png"
+                alt="stockfish engine"
+              />
+            </Grid>
+          </Grid>
+          <Grid container justify="space-between" alignItems="center">
+            <Grid item md={5} className={classes.gridItemUnsetFlexBasis}>
+              <img className={classes.techImages} src="/images/bert.png" alt="BERT" />
+            </Grid>
+            <Grid item md={7} className={classes.leftContent}>
+              <Typography variant="h4">BERT</Typography>
+              <p>
+                <i>Bidirectional Encoder Representations from Transformers</i>, mais conhecido como
+                BERT é uma técnica de machine learning voltado para solução de problemas de NLP. A
+                chessy utliza seu amiguinho para interpretar os comentários dos lances e aprender da
+                forma mais eficiente os melhores momentos da partida.
+              </p>
+            </Grid>
+          </Grid>
+        </Container>
+      </section>
+
+      <section className={classes.authorsSection}>
         <Container>
           <Typography variant="h3" className={classes.sectionTitle}>
             Autores
