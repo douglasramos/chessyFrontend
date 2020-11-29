@@ -4,15 +4,15 @@
 // import { makeStyles } from '@material-ui/core/styles';
 // import Toolbar from '@material-ui/core/Toolbar';
 // import MenuIcon from '@material-ui/icons/Menu';
-import { makeStyles } from '@material-ui/core';
+import { Container, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 
 const useStyles = makeStyles(() => ({
   logo: {
     display: 'flex',
-    width: '50px',
-    height: '82px',
-    backgroundSize: '100px, 82px',
+    width: '150px',
+    // height: '82px',
+    // backgroundSize: '100px, 82px',
   },
   navList: {
     display: 'flex',
@@ -21,9 +21,10 @@ const useStyles = makeStyles(() => ({
   firstItem: {
     marginRight: '30px',
   },
-  navCustom: {
+  navbar: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   headerCustom: {
     padding: '1em 2em',
@@ -35,23 +36,29 @@ export const Header = (): JSX.Element => {
 
   return (
     <header className={classes.headerCustom}>
-      <nav id="nave" role="navigation" className={classes.navCustom}>
-        <a href="">
-          <img src="/icons/crown.svg" alt="chess queen" className={classes.logo} />
-        </a>
-        <ul className={classes.navList}>
-          <li className={classes.firstItem}>
-            <a>
-              <b>PROJETO</b>
-            </a>
-          </li>
-          <li>
-            <a>
-              <b>APLICACAÇÃO</b>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <Container>
+        <nav id="nave" role="navigation" className={classes.navbar}>
+          <a href="/">
+            <img src="/icons/logo.svg" alt="chess queen" className={classes.logo} />
+          </a>
+          <ul className={classes.navList}>
+            <li className={classes.firstItem}>
+              <a href="/">
+                <Typography variant="h6">
+                  <b>Projeto</b>
+                </Typography>
+              </a>
+            </li>
+            <li>
+              <a>
+                <Typography variant="h6">
+                  <b>Aplicação</b>
+                </Typography>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </Container>
     </header>
   );
 };
