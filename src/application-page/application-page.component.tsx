@@ -106,7 +106,7 @@ export const ApplicationPage = (): JSX.Element => {
     <>
       <Container>
         <Typography variant="h4">
-          Partida Exemplo - Evento Southern Chess Summer Invitational 2006)
+          Partida Exemplo - Evento Southern Chess Summer Invitational 2006
         </Typography>
       </Container>
       <Container className={classes.root}>

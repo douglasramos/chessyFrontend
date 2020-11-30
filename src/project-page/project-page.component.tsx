@@ -105,7 +105,7 @@ export const ProjectPage = (): JSX.Element => {
     {
       image: 'pedro-brito',
       href: 'https://google.com',
-      name: 'Pedro Bitro',
+      name: 'Pedro Brito',
       description:
         'Estudante de Engenharia de Computação na Escola Politécnica da Universidade de São Paulo',
     },
@@ -121,7 +121,7 @@ export const ProjectPage = (): JSX.Element => {
       href: 'https://www.linkedin.com/in/glauber-de-bona-224a991a1/',
       name: 'Glauber de Bona',
       description:
-        'Professor Doutor no departamento de Engenheira de Computação e sistemas digitais da POLI-USP',
+        'Professor Doutor no departamento de Engenharia de Computação e sistemas digitais da POLI-USP',
     },
   ];
 
@@ -135,10 +135,10 @@ export const ProjectPage = (): JSX.Element => {
           </Typography>
           <p className={classes.sectionContent}>
             A chessy é resultado do projeto de conclusão de curso dos alunos Douglas Ramos, Pedro
-            Brito e Rafael Seiji, com orientação do professor Glauber de Bona, pelo Escola
-            Politécnica da univesidade de São Paulo, 2020. O trabalho versa sobre o estudo do uso de
-            modelos de processamento de linguagem natural em partidas de xadrez, a fim de detectar
-            pontos de viradas (ou melhores momentos) de uma partida.
+            Brito e Rafael Seiji, com orientação do professor Glauber de Bona, pela Escola
+            Politécnica da Universidade de São Paulo, 2020. O trabalho versa sobre o estudo do uso
+            de modelos de processamento de linguagem natural em partidas de xadrez, a fim de
+            detectar pontos de viradas (ou melhores momentos) de uma partida.
           </p>
         </Container>
       </section>
@@ -189,9 +189,9 @@ export const ProjectPage = (): JSX.Element => {
               <Typography variant="h4">BERT</Typography>
               <p>
                 <i>Bidirectional Encoder Representations from Transformers</i>, mais conhecido como
-                BERT é uma técnica de machine learning voltado para solução de problemas de NLP. A
-                chessy utliza seu amiguinho para interpretar os comentários dos lances e aprender da
-                forma mais eficiente os melhores momentos da partida.
+                BERT é uma técnica de machine learning voltada para solução de problemas de NLP. A
+                chessy utiliza seu amiguinho para interpretar os comentários dos lances e aprender
+                da forma mais eficiente os melhores momentos da partida.
               </p>
             </Grid>
           </Grid>
