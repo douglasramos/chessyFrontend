@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '100px',
       fontSize: '24px',
       lineHeight: '36px',
-      backgroundImage: 'linear-gradient(#fff, #edebe9)',
       [theme.breakpoints.down('sm')]: {
         paddingTop: '50px',
       },

@@ -6,19 +6,10 @@ import { isMobile } from 'react-device-detect';
 
 import { CtaButton } from '../cta-button/cta-button.component';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-    '& section': {
-      paddingTop: '100px',
-      paddingBottom: '50px',
-      fontSize: '24px',
-      lineHeight: '36px',
-      backgroundImage: 'linear-gradient(#fff, #edebe9)',
-      [theme.breakpoints.down('sm')]: {
-        paddingTop: '50px',
-      },
-    },
+    backgroundImage: 'linear-gradient(#fff, #edebe9)',
   },
   main: {
     alignItems: 'center',
