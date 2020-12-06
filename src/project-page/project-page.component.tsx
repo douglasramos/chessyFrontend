@@ -121,7 +121,7 @@ export const ProjectPage = (): JSX.Element => {
         'Cientista de dados na BigData e estudante de Engenharia na Escola Politécnica da Universidade de São Paulo',
     },
     {
-      image: 'glauber-de-bona',
+      image: 'glauber-debona',
       href: 'https://www.linkedin.com/in/glauber-de-bona-224a991a1/',
       name: 'Glauber de Bona',
       description:
