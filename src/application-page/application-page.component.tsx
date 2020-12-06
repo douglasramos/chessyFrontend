@@ -11,7 +11,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
 import Chessboard from 'chessboardjsx';
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
+// import Chessboard from 'react-chessboardjs';
 import { isMobile } from 'react-device-detect';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 
@@ -66,12 +67,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const ApplicationPage = (): JSX.Element => {
+  const [, forceUpdate] = useReducer((x: number) => x + 1, 0);
   const classes = useStyles();
 
   const allPositions = samplePgn;
 
-  const [currentBoardState, setCurrentBoardState] = useState(allPositions[0]);
   const [isOnlyBestMomentsCheck, setIsOnlyBestMomentsCheck] = useState(false);
+  const [currentListIndex, setCurrentListIndex] = useState(0);
 
   const positions = isOnlyBestMomentsCheck
     ? allPositions.filter((pos) => pos.isBestMoment)
@@ -85,8 +87,11 @@ export const ApplicationPage = (): JSX.Element => {
         button
         style={style}
         key={index}
-        onClick={() => setCurrentBoardState(positions[index])}
-        selected={index === currentBoardState.id}
+        onClick={() => {
+          setCurrentListIndex(index);
+          forceUpdate();
+        }}
+        selected={index === currentListIndex}
         className={positions[index].isBestMoment && classes.bestMoment}
       >
         <ListItemText
@@ -139,10 +144,11 @@ export const ApplicationPage = (): JSX.Element => {
             <FixedSizeList height={600} width={200} itemSize={46} itemCount={positions.length}>
               {renderRow}
             </FixedSizeList>
-            <Chessboard position={currentBoardState.fen} width={600} />
+
+            <Chessboard position={positions[currentListIndex].fen} width={600} draggable={false} />
           </div>
           <div className={classes.comment}>
-            <Typography>{`Comentário: ${currentBoardState.comment}`}</Typography>
+            <Typography>{`Comentário: ${positions[currentListIndex].comment}`}</Typography>
           </div>
         </Card>
       </Container>
