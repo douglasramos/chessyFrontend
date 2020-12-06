@@ -1,6 +1,7 @@
 import { Button } from '@material-ui/core';
 import { createMuiTheme, makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -42,7 +43,7 @@ export const CtaButton = (): JSX.Element => {
         href="/application"
       >
         Inicie Agora
-        <img className={classes.imageButton} src="/icons/arrow.svg" alt="arrow" />
+        {!isMobile && <img className={classes.imageButton} src="/icons/arrow.svg" alt="arrow" />}
       </Button>
     </MuiThemeProvider>
   );

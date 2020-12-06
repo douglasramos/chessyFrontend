@@ -1,6 +1,7 @@
 import { Container, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 
 import { AuthorCard } from '../author-card/author-card.component';
 import { CardWithLink } from '../card-with-link/card-with-link.component';
@@ -14,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '100px',
       fontSize: '24px',
       lineHeight: '36px',
+      [theme.breakpoints.down('sm')]: {
+        paddingTop: '50px',
+      },
     },
   },
   menuButton: {
@@ -68,8 +72,8 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: 'unset',
   },
   margin: {
-    marginTop: '1em',
-    marginLeft: '1em',
+    // marginTop: '1em',
+    // marginLeft: '1em',
   },
 }));
 
@@ -84,12 +88,12 @@ export const ProjectPage = (): JSX.Element => {
 
   const links: Links[] = [
     { image: 'graduation', name: 'Monografia', href: 'https://google.com' },
-    { image: 'play', name: `${'Video Apresentação'}`, href: 'https://google.com' },
-    { image: 'github', name: 'Repo Modelo NLP', href: 'https://github.com/Rseiji/TCC-2020' },
-    { image: 'github', name: 'Repo Backend', href: 'https://github.com/douglasramos/chessyApi' },
+    { image: 'play', name: `${'Apresentação'}`, href: 'https://google.com' },
+    { image: 'github', name: 'Modelo NLP', href: 'https://github.com/Rseiji/TCC-2020' },
+    { image: 'github', name: 'Backend', href: 'https://github.com/douglasramos/chessyApi' },
     {
       image: 'github',
-      name: 'Repo Frontend',
+      name: 'Frontend',
       href: 'https://github.com/douglasramos/chessyFrontend',
     },
   ];
@@ -117,7 +121,7 @@ export const ProjectPage = (): JSX.Element => {
         'Cientista de dados na BigData e estudante de Engenharia na Escola Politécnica da Universidade de São Paulo',
     },
     {
-      image: '',
+      image: 'glauber-de-bona',
       href: 'https://www.linkedin.com/in/glauber-de-bona-224a991a1/',
       name: 'Glauber de Bona',
       description:
@@ -148,9 +152,9 @@ export const ProjectPage = (): JSX.Element => {
           <Typography variant="h3" className={classes.sectionTitle}>
             Links Úteis
           </Typography>
-          <Grid container justify="space-between" className={classes.margin}>
+          <Grid container justify="space-between" className={classes.margin} spacing={2}>
             {links.map((link) => (
-              <Grid key={link.href} item>
+              <Grid key={link.href} item xs={12} md>
                 <CardWithLink title={link.name} image={link.image} href={link.href} />
               </Grid>
             ))}
@@ -164,28 +168,33 @@ export const ProjectPage = (): JSX.Element => {
             Tecnologias
           </Typography>
           <Grid container justify="space-between" alignItems="center">
-            <Grid item md={7} className={classes.leftContent}>
+            <Grid item xs={12} md={7} className={classes.leftContent}>
               <Typography variant="h4">Stockfish</Typography>
               <p>
                 Stockfish é uma das mais populares engines de xadrez. Ela consegue simular partidas
-                e performar melhor do que os Grande Mestres. Na chessy, ela é utilizada para avaliar
-                a qualidade dos lances em uma partida e assim ajudar o nosso modelo a destacar os
-                lances mais importantes do jogo.
+                e performar melhor do que os Grandes Mestres. Na chessy, ela é utilizada para
+                avaliar a qualidade dos lances em uma partida e assim ajudar o nosso modelo a
+                destacar os lances mais importantes do jogo.
               </p>
             </Grid>
-            <Grid item md={5} className={classes.gridItemUnsetFlexBasis}>
-              <img
-                className={classes.techImages}
-                src="/images/stockfish.png"
-                alt="stockfish engine"
-              />
-            </Grid>
+            {!isMobile && (
+              <Grid item md={5} className={classes.gridItemUnsetFlexBasis}>
+                <img
+                  className={classes.techImages}
+                  src="/images/stockfish.png"
+                  alt="stockfish engine"
+                />
+              </Grid>
+            )}
           </Grid>
           <Grid container justify="space-between" alignItems="center">
-            <Grid item md={5} className={classes.gridItemUnsetFlexBasis}>
-              <img className={classes.techImages} src="/images/bert.png" alt="BERT" />
-            </Grid>
-            <Grid item md={7} className={classes.leftContent}>
+            {!isMobile && (
+              <Grid item md={5} className={classes.gridItemUnsetFlexBasis}>
+                <img className={classes.techImages} src="/images/bert.png" alt="BERT" />
+              </Grid>
+            )}
+
+            <Grid item xs={12} md={7} className={classes.leftContent}>
               <Typography variant="h4">BERT</Typography>
               <p>
                 <i>Bidirectional Encoder Representations from Transformers</i>, mais conhecido como
@@ -203,9 +212,9 @@ export const ProjectPage = (): JSX.Element => {
           <Typography variant="h3" className={classes.sectionTitle}>
             Autores
           </Typography>
-          <Grid container justify="space-between" className={classes.margin}>
+          <Grid container justify="space-between" spacing={2} className={classes.margin}>
             {authors.map((author) => (
-              <Grid key={author.name} item>
+              <Grid key={author.name} item xs={12} md>
                 <AuthorCard {...author} />
               </Grid>
             ))}

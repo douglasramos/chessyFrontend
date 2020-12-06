@@ -12,6 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
 import Chessboard from 'chessboardjsx';
 import React, { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 
 import { samplePgn } from './chessboard-with-list/sample-pgn';
@@ -102,6 +103,15 @@ export const ApplicationPage = (): JSX.Element => {
     );
   }
 
+  if (isMobile) {
+    return (
+      <div>
+        <Typography>
+          Está página não está disponível no mobile. Por favor, utilize o desktop
+        </Typography>
+      </div>
+    );
+  }
   return (
     <>
       <Container>

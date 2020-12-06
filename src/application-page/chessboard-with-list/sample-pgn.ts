@@ -5,6 +5,7 @@ export const samplePgn = [
     moveTo: 'd4',
     fen: 'rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR',
     isBestMoment: true,
+    isPredictionRight: true,
     comment: 'For those that know me, I play 1. d4 almost exclusively.',
   },
   {
@@ -13,6 +14,7 @@ export const samplePgn = [
     moveTo: 'e6',
     fen: 'rnbqkbnr/pppp1ppp/4p3/8/3P4/8/PPP1PPPP/RNBQKBNR',
     isBestMoment: true,
+    isPredictionRight: true,
     comment:
       "It is responses like this that drive me crazy. I'm pretty solid in most variations of the QGD and QGA, and black's response just took away my comfort zone.",
   },

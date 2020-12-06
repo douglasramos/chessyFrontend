@@ -8,6 +8,8 @@ import React from 'react';
 
 const useStyles = makeStyles({
   root: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
     maxWidth: 250,
     borderRadius: 16,
   },

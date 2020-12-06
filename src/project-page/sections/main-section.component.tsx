@@ -2,19 +2,23 @@ import { Container, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Chessboard from 'chessboardjsx';
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 
 import { CtaButton } from '../cta-button/cta-button.component';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     '& section': {
       paddingTop: '100px',
-      paddingBottom: '100px',
+      paddingBottom: '50px',
       fontSize: '24px',
       lineHeight: '36px',
+      backgroundImage: 'linear-gradient(#fff, #edebe9)',
+      [theme.breakpoints.down('sm')]: {
+        paddingTop: '50px',
+      },
     },
-    backgroundImage: 'linear-gradient(#fff, #edebe9)',
   },
   main: {
     alignItems: 'center',
@@ -55,7 +59,7 @@ export const MainSection = (): JSX.Element => {
     <section className={classes.root}>
       <Container>
         <Grid container justify="space-between" className={classes.main}>
-          <Grid item md={7} className={classes.mainContent}>
+          <Grid item xs={12} md={7} className={classes.mainContent}>
             <Typography variant="h2">
               <b>Capture os melhores momentos do seu xadrez</b>
             </Typography>
@@ -65,9 +69,11 @@ export const MainSection = (): JSX.Element => {
             </p>
             <CtaButton />
           </Grid>
-          <Grid item md={5} className={classes.mainContent}>
-            <Chessboard position="start" width={450} />
-          </Grid>
+          {!isMobile && (
+            <Grid item md={5} className={classes.mainContent}>
+              <Chessboard position="start" width={450} />
+            </Grid>
+          )}
         </Grid>
       </Container>
     </section>

@@ -2,9 +2,13 @@ import { Container, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   logo: {
     display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      width: '100px',
+      marginRight: '30px',
+    },
     width: '150px',
   },
   navList: {
@@ -17,17 +21,31 @@ const useStyles = makeStyles(() => ({
         color: 'black',
       },
     },
+    fontSize: 8,
   },
   firstItem: {
     marginRight: '30px',
+    [theme.breakpoints.down('sm')]: {
+      marginRight: '15px',
+    },
   },
   navbar: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'space-between',
+    },
   },
   headerCustom: {
-    padding: '1em 2em',
+    [theme.breakpoints.up('sm')]: {
+      padding: '1em 2em',
+    },
+    padding: '0.5em 1em',
+  },
+  navItems: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.8rem',
+    },
   },
 }));
 
@@ -44,14 +62,14 @@ export const Header = (): JSX.Element => {
           <ul className={classes.navList}>
             <li className={classes.firstItem}>
               <Link to="/">
-                <Typography variant="h6">
+                <Typography variant="h6" className={classes.navItems}>
                   <b>Projeto</b>
                 </Typography>
               </Link>
             </li>
             <li>
               <Link to="/application">
-                <Typography variant="h6">
+                <Typography variant="h6" className={classes.navItems}>
                   <b>Aplicação</b>
                 </Typography>
               </Link>
