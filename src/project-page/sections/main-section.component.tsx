@@ -58,7 +58,7 @@ export const MainSection = (): JSX.Element => {
               A nossa IA analisa os comentários da sua partida e te traz os melhores momentos pra
               que você consiga estudar os seus lances e melhorar no xadrez
             </p>
-            <CtaButton showActionArrow={true} />
+            <CtaButton showActionArrow={true} href="/application" title="Inicie Agora" />
           </Grid>
           {!isMobile && (
             <Grid item md={5} className={classes.mainContent}>

@@ -21,11 +21,14 @@ const useStyles = makeStyles(() => ({
 
 export interface Props {
   showActionArrow: boolean;
+  href?: string;
+  title: string;
+  onClick?: () => void;
 }
 
 export const CtaButton = (props: Props): JSX.Element => {
   const classes = useStyles();
-  const { showActionArrow } = props;
+  const { showActionArrow, href, title, onClick } = props;
 
   const buttonTheme = createMuiTheme({
     palette: {
@@ -45,9 +48,10 @@ export const CtaButton = (props: Props): JSX.Element => {
         size="medium"
         color="primary"
         className={classes.root}
-        href="/application"
+        href={href}
+        onClick={onClick}
       >
-        Inicie Agora
+        {title}
         {!isMobile && showActionArrow && (
           <img className={classes.imageButton} src="/icons/arrow.svg" alt="arrow" />
         )}
