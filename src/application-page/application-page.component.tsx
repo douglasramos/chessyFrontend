@@ -279,7 +279,11 @@ export const ApplicationPage = (): JSX.Element => {
                   },
                 ]}
                 totalValue={1}
-                label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+                label={({ dataEntry }) =>
+                  Math.round(dataEntry.percentage) === 0
+                    ? ''
+                    : `${Math.round(dataEntry.percentage)} %`
+                }
                 animate={true}
                 labelPosition={60}
               />
@@ -302,7 +306,11 @@ export const ApplicationPage = (): JSX.Element => {
                   },
                 ]}
                 totalValue={1}
-                label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+                label={({ dataEntry }) =>
+                  Math.round(dataEntry.percentage) === 0
+                    ? ''
+                    : `${Math.round(dataEntry.percentage)} %`
+                }
                 animate={true}
                 labelPosition={60}
               />
@@ -325,7 +333,11 @@ export const ApplicationPage = (): JSX.Element => {
                   },
                 ]}
                 totalValue={1}
-                label={({ dataEntry }) => `${Math.round(dataEntry.percentage)} %`}
+                label={({ dataEntry }) =>
+                  Math.round(dataEntry.percentage) === 0
+                    ? ''
+                    : `${Math.round(dataEntry.percentage)} %`
+                }
                 animate={true}
                 labelPosition={60}
               />
