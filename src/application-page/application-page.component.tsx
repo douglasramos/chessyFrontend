@@ -3,7 +3,12 @@ import {
   Checkbox,
   CheckboxProps,
   Container,
+  FormControl,
   FormControlLabel,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
   Typography,
 } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
@@ -12,11 +17,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
 import Chessboard from 'chessboardjsx';
 import React, { useReducer, useState } from 'react';
-// import Chessboard from 'react-chessboardjs';
 import { isMobile } from 'react-device-detect';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 
-import { samplePgn } from './chessboard-with-list/sample-pgn';
+import { matchSamples } from './match-samples';
 
 const GreenCheckbox = withStyles({
   root: {
@@ -63,6 +67,9 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'left',
       margin: 15,
     },
+    matchSelect: {
+      width: 250,
+    },
   }),
 );
 
@@ -70,14 +77,17 @@ export const ApplicationPage = (): JSX.Element => {
   const [, forceUpdate] = useReducer((x: number) => x + 1, 0);
   const classes = useStyles();
 
-  const allPositions = samplePgn;
+  const matches = matchSamples;
 
   const [isOnlyBestMomentsCheck, setIsOnlyBestMomentsCheck] = useState(false);
-  const [currentListIndex, setCurrentListIndex] = useState(0);
+  const [currentPosListIndex, setCurrentPosListIndex] = useState(0);
+  const [currentMatchListIndex, setCurrentMatchListIndex] = useState(0);
+
+  const allMatchPositions = matches[currentMatchListIndex].plays;
 
   const positions = isOnlyBestMomentsCheck
-    ? allPositions.filter((pos) => pos.isBestMoment)
-    : allPositions;
+    ? allMatchPositions.filter((pos) => pos.isBestMoment)
+    : allMatchPositions;
 
   function renderRow(props: ListChildComponentProps) {
     const { index, style } = props;
@@ -88,10 +98,10 @@ export const ApplicationPage = (): JSX.Element => {
         style={style}
         key={index}
         onClick={() => {
-          setCurrentListIndex(index);
+          setCurrentPosListIndex(index);
           forceUpdate();
         }}
-        selected={index === currentListIndex}
+        selected={index === currentPosListIndex}
         className={positions[index].isBestMoment && classes.bestMoment}
       >
         <ListItemText
@@ -100,13 +110,18 @@ export const ApplicationPage = (): JSX.Element => {
             <pre>
               {`${`0${positions[index].id + 1}`.slice(-2)} -`} {positions[index].moveFrom} →{' '}
               {`${positions[index].moveTo} `}
-              {positions[index].isBestMoment && '✅'}
+              {positions[index].isBestMoment && '🟢'}
             </pre>
           }
         />
       </ListItem>
     );
   }
+
+  const handleMatchChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setCurrentMatchListIndex(event.target.value as number);
+    setCurrentPosListIndex(0);
+  };
 
   if (isMobile) {
     return (
@@ -117,38 +132,58 @@ export const ApplicationPage = (): JSX.Element => {
       </div>
     );
   }
+
   return (
     <>
-      <Container>
-        <Typography variant="h4">
-          Partida Exemplo - Evento Southern Chess Summer Invitational 2006
-        </Typography>
-      </Container>
       <Container className={classes.root}>
         <Card variant="outlined" className={classes.cardChessBoard}>
-          <div className={classes.cardChessBoardTop}>
-            <FormControlLabel
-              control={
-                <GreenCheckbox
-                  checked={isOnlyBestMomentsCheck}
-                  onChange={(_, value) => {
-                    setIsOnlyBestMomentsCheck(value);
-                  }}
-                  name="checkedG"
-                />
-              }
-              label="Apenas melhores momentos"
-            />
-          </div>
+          <Grid container item className={classes.cardChessBoardTop} alignItems="center">
+            <Grid item>
+              <FormControlLabel
+                control={
+                  <GreenCheckbox
+                    checked={isOnlyBestMomentsCheck}
+                    onChange={(_, value) => {
+                      setIsOnlyBestMomentsCheck(value);
+                    }}
+                    name="checkedG"
+                  />
+                }
+                label="Apenas melhores momentos"
+              />
+            </Grid>
+            <Grid item>
+              <FormControl variant="outlined" className={classes.matchSelect}>
+                <InputLabel id="demo-simple-select-outlined-label">Partidas</InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  value={currentMatchListIndex}
+                  onChange={handleMatchChange}
+                  label="Partidas"
+                >
+                  {matches.map((match) => (
+                    <MenuItem key={match.id} value={match.id}>
+                      {match.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
           <div className={classes.cardChessBoardBottom}>
-            <FixedSizeList height={600} width={200} itemSize={46} itemCount={positions.length}>
+            <FixedSizeList height={600} width={220} itemSize={46} itemCount={positions.length}>
               {renderRow}
             </FixedSizeList>
 
-            <Chessboard position={positions[currentListIndex].fen} width={600} draggable={false} />
+            <Chessboard
+              position={positions[currentPosListIndex].fen}
+              width={600}
+              draggable={false}
+            />
           </div>
           <div className={classes.comment}>
-            <Typography>{`Comentário: ${positions[currentListIndex].comment}`}</Typography>
+            <Typography>{`Comentário: ${positions[currentPosListIndex].comment}`}</Typography>
           </div>
         </Card>
       </Container>

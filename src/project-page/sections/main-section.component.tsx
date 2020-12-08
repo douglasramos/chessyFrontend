@@ -4,7 +4,7 @@ import Chessboard from 'chessboardjsx';
 import React from 'react';
 import { isMobile } from 'react-device-detect';
 
-import { CtaButton } from '../cta-button/cta-button.component';
+import { CtaButton } from '../../cta-button/cta-button.component';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -58,7 +58,7 @@ export const MainSection = (): JSX.Element => {
               A nossa IA analisa os comentários da sua partida e te traz os melhores momentos pra
               que você consiga estudar os seus lances e melhorar no xadrez
             </p>
-            <CtaButton />
+            <CtaButton showActionArrow={true} />
           </Grid>
           {!isMobile && (
             <Grid item md={5} className={classes.mainContent}>
