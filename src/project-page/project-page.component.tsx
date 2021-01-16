@@ -87,8 +87,16 @@ export const ProjectPage = (): JSX.Element => {
   const classes = useStyles();
 
   const links: Links[] = [
-    { image: 'graduation', name: 'Monografia', href: 'https://google.com' },
-    { image: 'play', name: `${'Apresentação'}`, href: 'https://google.com' },
+    {
+      image: 'graduation',
+      name: 'Monografia',
+      href: 'https://drive.google.com/file/d/1Sztm1uj3nBAbDHP1IqDLR13aZX9DUf-t/view?usp=sharing',
+    },
+    {
+      image: 'play',
+      name: `${'Apresentação'}`,
+      href: 'https://www.youtube.com/watch?v=GnN12o0VySk&feature=youtu.be',
+    },
     { image: 'github', name: 'Modelo NLP', href: 'https://github.com/Rseiji/TCC-2020' },
     { image: 'github', name: 'Backend', href: 'https://github.com/douglasramos/chessyApi' },
     {
@@ -108,7 +116,7 @@ export const ProjectPage = (): JSX.Element => {
     },
     {
       image: 'pedro-brito',
-      href: 'https://google.com',
+      href: 'https://www.linkedin.com/in/pedro-brito-a24734203/',
       name: 'Pedro Brito',
       description:
         'Estudante de Engenharia de Computação na Escola Politécnica da Universidade de São Paulo',
